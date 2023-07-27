@@ -31,18 +31,21 @@
 
 @section('content')
 <nav class="mb-4" >
-    <a href="{{(route('task.create'))}}">Add Task</a>
+    <a href="{{(route('task.create'))}}"
+     class="link">
+     Add Task</a>
 </nav>
     @foreach($tasks as $task)
         <div>
-            <a href="{{ route('tasks.show', ['task' => $task->id ])}}">{{ $task->title }}</a>
+            <a href="{{ route('tasks.show', ['task' => $task->id ])}}"
+                @class(['line-through' => $task->completed])>{{ $task->title }}</a>
         </div>
         {{-- @empty
         <div>No Tasks </div> --}}
     @endforeach
 
     @if ($tasks->count())
-        <nav>
+        <nav class="mt-1">
             {{ $tasks->links() }}
         </nav>
     @endif
