@@ -30,9 +30,20 @@
 <br> --}}
 
 @section('content')
-@foreach($tasks as $task)
-    <div>
-        <a href="{{ route('tasks.show', ['id' => $task->id ])}}">{{ $task->title }}</a>
-    </div>
-@endforeach
+<nav class="mb-4" >
+    <a href="{{(route('task.create'))}}">Add Task</a>
+</nav>
+    @foreach($tasks as $task)
+        <div>
+            <a href="{{ route('tasks.show', ['task' => $task->id ])}}">{{ $task->title }}</a>
+        </div>
+        {{-- @empty
+        <div>No Tasks </div> --}}
+    @endforeach
+
+    @if ($tasks->count())
+        <nav>
+            {{ $tasks->links() }}
+        </nav>
+    @endif
 @endsection
